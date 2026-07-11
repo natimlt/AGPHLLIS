@@ -1,0 +1,300 @@
+/* ======================================================
+   AGPHL LIS - Results Management CSS
+   Version: 1.0
+   ====================================================== */
+
+/* ===== Results Toolbar ===== */
+.results-toolbar {
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* ===== Results Stats ===== */
+.results-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ===== Result Entry Form ===== */
+.result-entry-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.result-field {
+  margin-bottom: 1rem;
+}
+
+.result-field label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--gray-700);
+  margin-bottom: 0.375rem;
+}
+
+.result-field input,
+.result-field select,
+.result-field textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid var(--gray-300);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  transition: var(--transition-fast);
+  background: var(--white);
+  color: var(--gray-900);
+}
+
+.result-field input:focus,
+.result-field select:focus,
+.result-field textarea:focus {
+  border-color: var(--primary-500);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(26, 102, 245, 0.1);
+}
+
+.result-field .unit {
+  font-size: var(--text-xs);
+  color: var(--gray-500);
+  margin-left: 0.25rem;
+}
+
+.result-field .reference-range {
+  font-size: var(--text-xs);
+  color: var(--gray-500);
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.result-field .flag {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+
+.flag-high {
+  background: var(--danger-light);
+  color: var(--danger);
+}
+
+.flag-low {
+  background: var(--warning-light);
+  color: #856404;
+}
+
+.flag-normal {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.flag-critical {
+  background: var(--danger);
+  color: var(--white);
+}
+
+/* ===== Result Table ===== */
+.result-status-badge {
+  display: inline-block;
+  padding: 0.125rem 0.625rem;
+  border-radius: 9999px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+.result-status-badge.pending {
+  background: var(--warning-light);
+  color: #856404;
+}
+
+.result-status-badge.partial {
+  background: var(--info-light);
+  color: var(--info);
+}
+
+.result-status-badge.complete {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.result-status-badge.verified {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.result-status-badge.rejected {
+  background: var(--danger-light);
+  color: var(--danger);
+}
+
+/* ===== Critical Value Alert ===== */
+.critical-alert {
+  background: var(--danger-light);
+  border: 2px solid var(--danger);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.critical-alert-icon {
+  font-size: 2rem;
+  color: var(--danger);
+}
+
+.critical-alert-content {
+  flex: 1;
+}
+
+.critical-alert-title {
+  font-weight: 600;
+  color: var(--danger);
+  margin: 0;
+}
+
+.critical-alert-message {
+  font-size: var(--text-sm);
+  color: var(--gray-700);
+  margin: 0.25rem 0 0;
+}
+
+/* ===== Verification Section ===== */
+.verification-section {
+  background: var(--gray-50);
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gray-200);
+}
+
+.verification-section h4 {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--gray-700);
+  margin: 0 0 0.75rem 0;
+}
+
+/* ===== Result Comments ===== */
+.result-comment {
+  padding: 0.5rem 0.75rem;
+  background: var(--white);
+  border-left: 3px solid var(--primary-500);
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.5rem;
+}
+
+.result-comment .comment-author {
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--gray-800);
+}
+
+.result-comment .comment-time {
+  font-size: var(--text-xs);
+  color: var(--gray-400);
+  margin-left: 0.5rem;
+}
+
+.result-comment .comment-text {
+  font-size: var(--text-sm);
+  color: var(--gray-700);
+  margin: 0.25rem 0 0;
+}
+
+/* ===== Print Styles ===== */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .result-report {
+    padding: 2rem;
+  }
+  
+  .result-report .report-header {
+    text-align: center;
+    border-bottom: 2px solid var(--gray-300);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .result-report .report-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  
+  .result-report .report-subtitle {
+    color: var(--gray-600);
+  }
+  
+  .result-report .report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+  }
+  
+  .result-report .report-table th,
+  .result-report .report-table td {
+    padding: 0.5rem;
+    border: 1px solid var(--gray-300);
+    text-align: left;
+  }
+  
+  .result-report .report-table th {
+    background: var(--gray-100);
+    font-weight: 600;
+  }
+  
+  .result-report .report-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 2px solid var(--gray-300);
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--gray-600);
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 992px) {
+  .result-entry-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .results-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .critical-alert {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .results-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== Result View Modal (was missing - modal rendered unstyled) ===== */
+.result-view-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .result-view-grid {
+    grid-template-columns: 1fr;
+  }
+}
