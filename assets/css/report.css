@@ -1,0 +1,152 @@
+/* ======================================================
+   AGPHL LIS - Reports CSS
+   Version: 1.0
+   ====================================================== */
+
+/* ===== Report Header ===== */
+.report-header {
+  padding: 1.5rem;
+  border-bottom: 2px solid var(--gray-200);
+  margin-bottom: 1.5rem;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+}
+
+.report-header-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.report-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+
+.report-header-text {
+  flex: 1;
+}
+
+.report-header-text h2 {
+  margin: 0;
+  color: var(--gray-900);
+  font-size: var(--text-xl);
+}
+
+.report-header-text .hospital-name {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--primary-600);
+  margin: 0;
+}
+
+.report-header-text .report-subtitle {
+  font-size: var(--text-sm);
+  color: var(--gray-500);
+  margin: 0.25rem 0 0;
+}
+
+.report-meta {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  font-size: var(--text-sm);
+  color: var(--gray-600);
+  margin-top: 0.5rem;
+}
+
+.report-meta-item {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.report-meta-item strong {
+  color: var(--gray-800);
+}
+
+/* ===== Report Footer ===== */
+.report-footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--gray-200);
+  text-align: center;
+  font-style: italic;
+  font-size: var(--text-sm);
+  color: var(--gray-500);
+}
+
+.report-footer .footer-divider {
+  margin: 0.5rem 0;
+  border-top: 1px solid var(--gray-200);
+}
+
+/* ===== Report Types Grid ===== */
+.report-types-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.report-type-card {
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  border: 2px solid transparent;
+}
+
+.report-type-card:hover {
+  border-color: var(--primary-500);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.report-type-card .report-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.report-type-card h4 {
+  margin: 0.5rem 0;
+  color: var(--gray-800);
+}
+
+.report-type-card p {
+  font-size: var(--text-sm);
+  color: var(--gray-500);
+  margin: 0;
+}
+
+/* ===== Report Preview ===== */
+.report-preview {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gray-200);
+  min-height: 400px;
+}
+
+/* ===== Print Styles ===== */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .report-preview {
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+  
+  .report-header {
+    border-bottom: 2px solid #333 !important;
+  }
+  
+  .report-footer {
+    border-top: 2px solid #333 !important;
+  }
+}

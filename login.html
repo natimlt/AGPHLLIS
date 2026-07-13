@@ -11,8 +11,8 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/login.css">
 </head>
 <body>
     <div class="login-container">
@@ -36,20 +36,18 @@
                     </svg>
                 </div>
                 <h1 class="brand-title">AGPHL LIS</h1>
-                <p class="brand-hospital">Agew Gimjabet Primary Hospital</p>
                 <p class="brand-subtitle">Laboratory Information System</p>
-        
+                <p class="brand-hospital">Agew Gimjabet Primary Hospital</p>
                 <div class="brand-tagline-wrap">
                     <span id="brandTagline" class="brand-tagline"></span><span class="tagline-cursor">|</span>
                 </div>
                 <div class="brand-divider"></div>
-                
-                <p class="brand-version">Version 2.0 &middot; ISO 15189:2022 Aligned</p>
-                <p class="brand-copyright">© 2026 Asrat Genet. All Rights Reserved.</p>
-                <button type="button" class="pwa-install-btn" id="pwaInstallBtn" style="background:rgba(247, 4, 4, 0.15); border:1px solid rgba(143, 12, 12, 0.4); color:white; padding:0.6rem 1.25rem; border-radius:var(--radius-sm,6px); cursor:pointer; font-size:var(--text-sm); margin-bottom:0.75rem; display:inline-flex; align-items:center; gap:0.5rem;">
+                <button type="button" class="pwa-install-btn" id="pwaInstallBtn" style="background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.4); color:white; padding:0.6rem 1.25rem; border-radius:var(--radius-sm,6px); cursor:pointer; font-size:var(--text-sm); margin-bottom:0.75rem; display:inline-flex; align-items:center; gap:0.5rem;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                     Install App
                 </button>
+                <p class="brand-version">Version 2.0 &middot; ISO 15189:2022 Aligned</p>
+                <p class="brand-copyright">© 2026 Asrat Genet. All Rights Reserved.</p>
             </div>
         </div>
 
@@ -57,11 +55,43 @@
         <div class="login-form-panel">
             <div class="form-wrapper">
                 <div class="form-header">
-                    <h1>Welcome Back || Adinas </h1> 
-                    <p>Sign in to your account</p>
+                    <svg width="40" height="20" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="10">
+                                    <path d="M7 8v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="19" cy="9" r="24"/>
+                                    <path d="M43 21v-2a4 4 0 3 0-6-3.87"/>
+                                    <path d="M26 6.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                   <marquee> <h2>Welcome Back</h2> </marquee>
+                    <p>Sign in to LIS System</p>
                 </div>
 
                 <form id="loginForm" novalidate>
+                    <div class="form-group">
+                        <label for="loginRole">Login As</label>
+                        <div class="input-group">
+                            <span class="input-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </span>
+                            <select id="loginRole">
+                                <option value="">Select role... (or enter username directly below)</option>
+                                <option value="admin">Administrator</option>
+                                <option value="labhead">Laboratory Head</option>
+                                <option value="quality">Quality Officer</option>
+                                <option value="pro">Medical Laboratory Professional</option>
+                                <option value="reception">Reception</option>
+                                <option value="viewer">Viewer</option>
+                                <option value="logistic">Logistic</option>
+                                
+                            </select>
+                        </div>
+                        <p style="font-size:var(--text-xs); color:var(--gray-500); margin:0.35rem 0 0;">Picking a role fills in its username below - you still need your own password.</p>
+                    </div>
+
                     <div class="form-group">
                         <label for="username">Username or Email</label>
                         <div class="input-group">
@@ -113,13 +143,15 @@
                     </button>
 
                     <div class="demo-credentials">
-                        <p>Demo Credentials <span style="opacity:0.7;"> clik password link</span>:</p>
-                        <a href="pass.html"> Pasword </a>
+                        <p>Credentials <span style="opacity:0.7;">(click password button to get password )</span>:</p>
+                    
+                     <a href="pas.html" ><p>Password</p> </a> 
                     </div>
                 </form>
+
                 <div class="form-footer">
-                    <p>Developed by <strong>Asrat Genet</strong></p>
-                    <p>Medical Laboratory Science Professional &amp; Laboratory Quality Officer</p>
+                    <p>Developed by  <strong>Asrat Genet</strong> </p>
+                   <marquee> <p>Medical Laboratory Science Professional &amp; Laboratory Quality Officer</p></marquee>
                 </div>
             </div>
         </div>
@@ -128,13 +160,13 @@
     <div id="toast" class="toast" style="display: none;"></div>
 
     <!-- ===== SCRIPTS - Load in correct order ===== -->
-    <script src="utils.js"></script>
-    <script src="validation.js"></script>
-    <script src="storage.js"></script>
-    <script src="default-data.js"></script>
-    <script src="auth.js"></script>
-    <script src="app.js"></script>
-    <script src="login-animations.js"></script>
-    <script src="pwa.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/validation.js"></script>
+    <script src="assets/js/storage.js"></script>
+    <script src="data/default-data.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/login-animations.js"></script>
+    <script src="assets/js/pwa.js"></script>
 </body>
 </html>

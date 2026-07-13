@@ -1,7 +1,7 @@
 /**
  * ======================================================
  * AGPHL LIS - Service Worker
- * Version: 1.0
+ * Version: 2.0
  *
  * Caches the entire app shell (HTML/CSS/JS/icons) so it
  * installs and runs like a native desktop/mobile app and

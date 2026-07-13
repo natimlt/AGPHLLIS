@@ -1,0 +1,166 @@
+/* ======================================================
+   AGPHL LIS - Inventory CSS
+   Version: 1.0
+   ====================================================== */
+
+/* ===== Inventory Stats ===== */
+.inventory-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ===== Category Badges ===== */
+.inventory-category {
+  display: inline-block;
+  padding: 0.125rem 0.625rem;
+  border-radius: 9999px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+.inventory-category.reagent {
+  background: var(--primary-100);
+  color: var(--primary-600);
+}
+
+.inventory-category.consumable {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.inventory-category.supplies {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.inventory-category.equipment {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.inventory-category.other {
+  background: var(--gray-200);
+  color: var(--gray-600);
+}
+
+/* ===== Stock Status ===== */
+.stock-status {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+.stock-status.available {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.stock-status.low {
+  background: var(--warning-light);
+  color: #856404;
+}
+
+.stock-status.critical {
+  background: var(--danger-light);
+  color: var(--danger);
+}
+
+.stock-status.out {
+  background: var(--gray-200);
+  color: var(--gray-600);
+}
+
+/* ===== Expiry Warning ===== */
+.expiry-warning {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+.expiry-warning.valid {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.expiry-warning.soon {
+  background: var(--warning-light);
+  color: #856404;
+}
+
+.expiry-warning.expired {
+  background: var(--danger-light);
+  color: var(--danger);
+}
+
+/* ===== Inventory Form ===== */
+.inventory-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.inventory-form-grid .form-group {
+  margin-bottom: 0;
+}
+
+.inventory-form-grid .form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+/* ===== Stock Movement ===== */
+.stock-movement {
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid var(--primary-500);
+  background: var(--gray-50);
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.5rem;
+}
+
+.stock-movement.in {
+  border-left-color: var(--success);
+}
+
+.stock-movement.out {
+  border-left-color: var(--danger);
+}
+
+.stock-movement .movement-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-sm);
+}
+
+.stock-movement .movement-info .quantity {
+  font-weight: 600;
+}
+
+.stock-movement .movement-info .quantity.positive {
+  color: var(--success);
+}
+
+.stock-movement .movement-info .quantity.negative {
+  color: var(--danger);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .inventory-form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .inventory-form-grid .form-group.full-width {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .inventory-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+}

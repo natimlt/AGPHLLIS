@@ -5,24 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AGPHL LIS - Dashboard</title>
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" href="favicon.ico">
-    <link rel="apple-touch-icon" href="icon-180.png">
-    <meta name="theme-color" content="#aa3a6b">
+    <link rel="icon" href="assets/icons/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/icons/icon-180.png">
+    <meta name="theme-color" content="#1a3a6b">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <!-- ===== CSS FILES ===== -->
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="components.css">
-    <link rel="stylesheet" href="dashboard.css">
-    <link rel="stylesheet" href="patients.css">
-    <link rel="stylesheet" href="samples.css">
-    <link rel="stylesheet" href="results.css">
-    <link rel="stylesheet" href="quality.css">
-    <link rel="stylesheet" href="report.css">
-    <link rel="stylesheet" href="inventory.css">
-    <link rel="stylesheet" href="setting.css">
-    <link rel="stylesheet" href="monitoring.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/patients.css">
+    <link rel="stylesheet" href="assets/css/samples.css">
+    <link rel="stylesheet" href="assets/css/results.css">
+    <link rel="stylesheet" href="assets/css/quality.css">
+    <link rel="stylesheet" href="assets/css/report.css">
+    <link rel="stylesheet" href="assets/css/inventory.css">
+    <link rel="stylesheet" href="assets/css/setting.css">
+    <link rel="stylesheet" href="assets/css/monitoring.css">
     <!-- PDF generation - used for real PDF file downloads on the Reports
          page. If this fails to load (e.g. no internet), report.js falls
          back to the browser's print dialog automatically. -->
@@ -40,7 +40,7 @@
                     <svg viewBox="0 0 24 24" width="32" height="32" fill="#1a66f5">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
                     </svg>
-                    <span class="sidebar-brand">Agew Gimjabet Primary Hospital Laboratory</span>
+                    <span class="sidebar-brand">AGPHL LIS</span>
                 </div>
                 <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1721,17 +1721,25 @@
                         <div class="card" style="padding:1.5rem; margin-top:1.25rem;">
                             <div class="page-header" style="margin-bottom:0.75rem;">
                                 <div class="page-header-left">
-                                    <h3 style="margin:0; font-size:var(--text-lg);">Bulk Entry - By Department</h3>
-                                    <p style="color:var(--gray-500); font-size:var(--text-sm); margin:0.25rem 0 0;">Enter tests performed per department, then "Apply to Report" sums them into the category fields above for you to review and save.</p>
+                                    <h3 style="margin:0; font-size:var(--text-lg);">Bulk Entry - All Tests</h3>
+                                    <p style="color:var(--gray-500); font-size:var(--text-sm); margin:0.25rem 0 0;">Enter the count performed for every test. The summary below rolls these up by department automatically. When ready, "Apply to Report" sums them into the category fields above for you to review and save.</p>
                                 </div>
                                 <div class="page-header-right">
                                     <button type="button" class="btn btn-primary" id="workloadBulkApplyBtn">Apply to Report</button>
                                 </div>
                             </div>
+                            <div class="table-container" style="max-height:420px; overflow-y:auto;">
+                                <table class="table">
+                                    <thead><tr><th>Test</th><th>Department</th><th>Count Performed</th></tr></thead>
+                                    <tbody id="workloadBulkTableBody"></tbody>
+                                </table>
+                            </div>
+
+                            <h4 style="margin:1.25rem 0 0.75rem; font-size:var(--text-sm); color:var(--gray-700);">Department Summary (auto-calculated)</h4>
                             <div class="table-container">
                                 <table class="table">
-                                    <thead><tr><th>Department</th><th>Tests Performed</th></tr></thead>
-                                    <tbody id="workloadBulkTableBody"></tbody>
+                                    <thead><tr><th>Department</th><th>Tests Performed</th><th>Share</th></tr></thead>
+                                    <tbody id="workloadDeptSummaryBody"></tbody>
                                 </table>
                             </div>
                         </div>
@@ -2427,7 +2435,7 @@
                                         <div>
                                             <h2 style="margin: 0;">AGPHL LIS</h2>
                                             <p style="margin: 0; color: var(--gray-500);">Laboratory Information System</p>
-                                            <p style="margin: 0; color: var(--gray-400); font-size: var(--text-sm);">Version <span id="aboutVersion">2.0</span></p>
+                                            <p style="margin: 0; color: var(--gray-400); font-size: var(--text-sm);">Version <span id="aboutVersion">1.0</span></p>
                                         </div>
                                     </div>
                                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
@@ -2466,7 +2474,7 @@
             <footer class="app-footer">
                 <div class="footer-content">
                     <div class="footer-left">
-                        <span>AGPHL LIS Version 1.0</span>
+                        <span>AGPHL LIS Version 2.0</span>
                         <span class="footer-divider">|</span>
                         <span>Developed by <strong>Asrat Genet</strong></span>
                     </div>
@@ -2976,6 +2984,16 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group">
+                            <label for="eqaProgram">EQA Program</label>
+                            <select id="eqaProgram"><option value="">No program (free-text type)</option></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="eqaProgramTest">Program Test</label>
+                            <select id="eqaProgramTest" style="display:none;"></select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
                             <label for="eqaType">EQA Type *</label>
                             <select id="eqaType" required>
                                 <option value="">Select Type</option>
@@ -2988,9 +3006,24 @@
                         </div>
                         <div class="form-group"><label for="eqaSampleId">Sample ID</label><input type="text" id="eqaSampleId" placeholder="Enter sample ID"></div>
                     </div>
+                    <div class="form-group">
+                        <label for="eqaResultType">Result Type</label>
+                        <select id="eqaResultType">
+                            <option value="Qualitative">Qualitative (text match)</option>
+                            <option value="Quantitative">Quantitative (numeric, z-score)</option>
+                        </select>
+                    </div>
                     <div class="form-row">
                         <div class="form-group"><label for="eqaResult">Result *</label><input type="text" id="eqaResult" required placeholder="Enter result"></div>
-                        <div class="form-group"><label for="eqaExpectedResult">Expected Result</label><input type="text" id="eqaExpectedResult" placeholder="Enter expected result"></div>
+                        <div class="form-group"><label for="eqaExpectedResult">Expected Result</label><input type="text" id="eqaExpectedResult" placeholder="Enter expected result (qualitative)"></div>
+                    </div>
+                    <div class="form-row" id="eqaQuantFields" style="display:none;">
+                        <div class="form-group"><label for="eqaTargetValue">Target Value</label><input type="number" step="any" id="eqaTargetValue" placeholder="Program target value"></div>
+                        <div class="form-group"><label for="eqaAcceptableSD">Acceptable SD</label><input type="number" step="any" id="eqaAcceptableSD" placeholder="Standard deviation"></div>
+                    </div>
+                    <div class="form-group" id="eqaQuantFields2" style="display:flex; align-items:center; gap:0.75rem;">
+                        <button type="button" class="btn btn-secondary btn-sm" id="eqaEvaluateBtn">Evaluate</button>
+                        <span id="eqaZScoreDisplay" style="font-size:var(--text-sm); color:var(--gray-600);"></span>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
@@ -2998,6 +3031,7 @@
                             <select id="eqaStatus">
                                 <option value="Pending">Pending</option>
                                 <option value="Passed">Passed</option>
+                                <option value="Warning">Warning</option>
                                 <option value="Failed">Failed</option>
                             </select>
                         </div>
@@ -3025,6 +3059,65 @@
             </div>
             <div class="modal-body">
                 <div id="eqaViewContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================== -->
+    <!-- EQA PROGRAMS MODAL -->
+    <!-- ======================================== -->
+    <div class="modal-overlay" id="eqaProgramsModal" style="display: none;">
+        <div class="modal modal-lg">
+            <div class="modal-header">
+                <h3>EQA Programs</h3>
+                <button class="modal-close" onclick="qualityManager.closeProgramsModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="color:var(--gray-500); font-size:var(--text-sm); margin:0 0 1rem;">
+                    A program is an EQA scheme (e.g. a national/regional proficiency testing provider) with its own panel of tests.
+                    Selecting a program when adding results keeps them comparable round to round and enables automatic z-score evaluation.
+                </p>
+                <div class="page-header" style="margin-bottom:0.75rem;">
+                    <div></div>
+                    <div class="page-header-right">
+                        <button type="button" class="btn btn-primary btn-sm" id="programAddNewBtn">Add Program</button>
+                    </div>
+                </div>
+                <div id="eqaProgramsList"></div>
+
+                <div id="programEditorPanel" style="display:none; border-top:1px solid var(--gray-200); margin-top:1.25rem; padding-top:1.25rem;">
+                    <h4 id="programEditorTitle" style="margin:0 0 0.75rem;">Add Program</h4>
+                    <form id="programForm" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="programName">Program Name *</label>
+                                <input type="text" id="programName" required placeholder="e.g. National EQA Scheme - Hematology">
+                            </div>
+                            <div class="form-group">
+                                <label for="programProvider">Provider</label>
+                                <input type="text" id="programProvider" placeholder="e.g. EPHI, WHO">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="programFrequency">Frequency</label>
+                            <select id="programFrequency">
+                                <option value="Monthly">Monthly</option>
+                                <option value="Quarterly" selected>Quarterly</option>
+                                <option value="Biannual">Biannual</option>
+                                <option value="Annual">Annual</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Tests in this Program *</label>
+                            <div id="programTestsBody"></div>
+                            <button type="button" class="btn btn-secondary btn-sm" id="programAddTestBtn">+ Add Test</button>
+                        </div>
+                        <div class="modal-footer" style="padding:0; border:none; margin-top:1rem;">
+                            <button type="button" class="btn btn-secondary" onclick="qualityManager.closeProgramEditor()">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Program</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -3921,8 +4014,6 @@
                                 <option value="Medical Laboratory Professional">Medical Laboratory Professional</option>
                                 <option value="Reception">Reception</option>
                                 <option value="Viewer">Viewer</option>
-                                <option value="Logistic">Viewer</option>
-                                
                             </select>
                         </div>
                         <div class="form-group">
@@ -4196,9 +4287,6 @@
                                 <option value="Urinalysis">Urinalysis</option>
                                 <option value="Reception">Reception</option>
                                 <option value="Administration">Administration</option>
-                                <option value="Administration">QO</option>
-                                <option value="Administration">Document Record</option>
-                                <option value="Administration">Head</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -4623,38 +4711,38 @@
     <!-- ======================================== -->
     <!-- SCRIPTS - Load in correct order -->
     <!-- ======================================== -->
-    <script src="utils.js"></script>
-    <script src="validation.js"></script>
-    <script src="storage.js"></script>
-    <script src="default-data.js"></script>
-    <script src="auth.js"></script>
-    <script src="config.js"></script>
-    <script src="sidebar.js"></script>
-    <script src="dashboard.js"></script>
-    <script src="multiselect.js"></script>
-    <script src="patients.js"></script>
-    <script src="sample.js"></script>
-    <script src="results.js"></script>
-    <script src="workflow.js"></script>
-    <script src="quality.js"></script>
-    <script src="qms-extended.js"></script>
-    <script src="equipment.js"></script>
-    <script src="inventory.js"></script>
-    <script src="tat.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/validation.js"></script>
+    <script src="assets/js/storage.js"></script>
+    <script src="data/default-data.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/sidebar.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/multiselect.js"></script>
+    <script src="assets/js/patients.js"></script>
+    <script src="assets/js/sample.js"></script>
+    <script src="assets/js/results.js"></script>
+    <script src="assets/js/workflow.js"></script>
+    <script src="assets/js/quality.js"></script>
+    <script src="assets/js/qms-extended.js"></script>
+    <script src="assets/js/equipment.js"></script>
+    <script src="assets/js/inventory.js"></script>
+    <script src="assets/js/tat.js"></script>
 
-    <script src="availability.js"></script>
-    <script src="qi.js"></script>
-    <script src="workload.js"></script>
-    <script src="satisfaction.js"></script>
-    <script src="staff.js"></script>
-    <script src="customization.js"></script>
-    <script src="users.js"></script>
-    <script src="facilities.js"></script>
-    <script src="supabase-sync.js"></script>
-    <script src="notifications.js"></script>
-    <script src="report.js"></script>
-    <script src="settings.js"></script>
-    <script src="app.js"></script>
-    <script src="jspwa.js"></script>
+    <script src="assets/js/availability.js"></script>
+    <script src="assets/js/qi.js"></script>
+    <script src="assets/js/workload.js"></script>
+    <script src="assets/js/satisfaction.js"></script>
+    <script src="assets/js/staff.js"></script>
+    <script src="assets/js/customization.js"></script>
+    <script src="assets/js/users.js"></script>
+    <script src="assets/js/facilities.js"></script>
+    <script src="assets/js/supabase-sync.js"></script>
+    <script src="assets/js/notifications.js"></script>
+    <script src="assets/js/report.js"></script>
+    <script src="assets/js/settings.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/pwa.js"></script>
 </body>
 </html>
