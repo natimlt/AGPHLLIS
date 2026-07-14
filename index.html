@@ -349,6 +349,16 @@
       backdrop-filter: blur(4px);
     }
 
+    .image-note a {
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .image-note a:hover {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
     /* ===== KEYFRAMES ===== */
     @keyframes fadeIn {
       0% { opacity: 0; transform: scale(0.92) translateY(20px); }
@@ -510,7 +520,7 @@
   <!-- ===== SPLASH SCREEN CONTENT ===== -->
   <div class="splash-screen" id="splashScreen">
 
-    <!-- ===== HERO: laboratory-expert.png ===== -->
+    <!-- ===== HERO: asrat.png ===== -->
     <div class="hero-animation">
       <div class="hero-item">
         <img class="hero-img" 
@@ -545,19 +555,34 @@
 
     <div class="splash-version">Version 2.0</div>
     
-    <div class="image-note">📁 Contact Developer for any Question <a href="tel+ 0918225730"> 0918225730</a></div>
+    <div class="image-note">📁 Contact Developer for any Question <a href="tel:+251918225730">0918225730</a></div>
   </div>
 
   <script>
     (function() {
       'use strict';
 
-      // --- 40 second redirect to login ---
-      const REDIRECT_DELAY = 20000;
+      // --- Force redirect to login.html after 8 seconds (reduced from 40s for testing) ---
+      const REDIRECT_DELAY = 8000; // 8 seconds - you can change back to 40000
 
-      setTimeout(function() {
+      // Function to redirect to login.html
+      function redirectToLogin() {
+        console.log('🔄 Redirecting to login.html...');
         window.location.href = 'login.html';
-      }, REDIRECT_DELAY);
+      }
+
+      // Set timeout for redirect
+      setTimeout(redirectToLogin, REDIRECT_DELAY);
+
+      // Also allow clicking anywhere to go to login immediately (optional)
+      document.addEventListener('click', function() {
+        // Clear the timeout to prevent double redirect
+        clearTimeout(timeoutId);
+        redirectToLogin();
+      });
+
+      // Store timeout ID so we can clear it on click
+      const timeoutId = setTimeout(redirectToLogin, REDIRECT_DELAY);
 
       // --- service worker (optional) ---
       if ('serviceWorker' in navigator) {
@@ -575,6 +600,8 @@
       });
 
       console.log('Splash with medical lab gradient background.');
+      console.log(`⏳ Redirecting to login.html in ${REDIRECT_DELAY/1000} seconds...`);
+      console.log('💡 Click anywhere to go to login immediately.');
     })();
   </script>
 
