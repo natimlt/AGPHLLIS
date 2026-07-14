@@ -1,202 +1,582 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AGPHL LIS - Loading</title>
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" href="assets/icons/favicon.ico">
-    <link rel="apple-touch-icon" href="assets/icons/icon-180.png">
-    <meta name="theme-color" content="rgb(107, 26, 26)">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <style>
-        /* ===== SPLASH SCREEN STYLES ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGPHL LIS · Animated Opening</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/icons/icon-180.png">
+  <meta name="theme-color" content="#b31b1b">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #6b1a1a 0%, #a02c2c 50%, #4a8bc2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      background: #0a0a1a;
+    }
 
-        .splash-screen {
-            text-align: center;
-            padding: 40px;
-            animation: fadeIn 1s ease-out;
-        }
+    /* ===== ANIMATED MEDICAL LAB BACKGROUND ===== */
+    .lab-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: linear-gradient(135deg, #0a0a2e 0%, #1a0a2e 25%, #2a0a3e 50%, #1a0a2e 75%, #0a0a2e 100%);
+      overflow: hidden;
+    }
 
-        .splash-logo {
-            width: 120px;
-            height: 120px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            margin: 0 auto 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            animation: pulse 2s infinite;
-        }
+    /* Gradient overlay with lab elements */
+    .lab-background::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(180, 50, 50, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(50, 100, 200, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(200, 80, 80, 0.08) 0%, transparent 70%);
+      z-index: 1;
+    }
 
-        .splash-logo svg {
-            width: 70px;
-            height: 70px;
-            fill: white;
-        }
+    /* Floating lab elements */
+    .lab-element {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.04);
+      font-size: 3rem;
+      animation: floatLab 20s infinite linear;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-        .splash-logo img {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-            border-radius: 15px;
-        }
+    .lab-element:nth-child(1) { top: 5%; left: 5%; font-size: 4rem; animation-delay: 0s; animation-duration: 18s; }
+    .lab-element:nth-child(2) { top: 15%; right: 8%; font-size: 3.5rem; animation-delay: 3s; animation-duration: 22s; }
+    .lab-element:nth-child(3) { bottom: 20%; left: 8%; font-size: 4.5rem; animation-delay: 6s; animation-duration: 20s; }
+    .lab-element:nth-child(4) { bottom: 30%; right: 5%; font-size: 3rem; animation-delay: 9s; animation-duration: 19s; }
+    .lab-element:nth-child(5) { top: 40%; left: 3%; font-size: 2.8rem; animation-delay: 2s; animation-duration: 24s; }
+    .lab-element:nth-child(6) { top: 60%; right: 3%; font-size: 3.2rem; animation-delay: 5s; animation-duration: 21s; }
+    .lab-element:nth-child(7) { top: 10%; left: 50%; font-size: 2.5rem; animation-delay: 7s; animation-duration: 25s; }
+    .lab-element:nth-child(8) { bottom: 10%; left: 50%; font-size: 2.8rem; animation-delay: 11s; animation-duration: 17s; }
+    .lab-element:nth-child(9) { top: 80%; left: 20%; font-size: 2.2rem; animation-delay: 4s; animation-duration: 23s; }
+    .lab-element:nth-child(10) { top: 30%; left: 45%; font-size: 2rem; animation-delay: 8s; animation-duration: 26s; }
+    .lab-element:nth-child(11) { top: 75%; left: 70%; font-size: 3rem; animation-delay: 1s; animation-duration: 19s; }
+    .lab-element:nth-child(12) { top: 45%; left: 80%; font-size: 2.6rem; animation-delay: 10s; animation-duration: 22s; }
 
-        .splash-title {
-            color: white;
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
+    .lab-element i {
+      opacity: 0.6;
+      filter: blur(1px);
+      transition: opacity 0.3s;
+    }
 
-        .splash-subtitle {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            font-weight: 300;
-        }
+    /* Smaller floating particles */
+    .particle {
+      position: absolute;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: floatParticle 15s infinite alternate ease-in-out;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-        .splash-hospital {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.95rem;
-            margin-bottom: 30px;
-        }
+    .particle:nth-child(13) { width: 300px; height: 300px; top: -50px; left: -50px; animation-delay: 0s; }
+    .particle:nth-child(14) { width: 400px; height: 400px; bottom: -100px; right: -100px; animation-delay: 5s; }
+    .particle:nth-child(15) { width: 250px; height: 250px; top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: 3s; }
 
-        .loading-container {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin: 30px 0;
-        }
+    /* Pulsing glow */
+    .lab-background::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(ellipse at 30% 40%, rgba(200, 50, 50, 0.05) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 60%, rgba(50, 100, 200, 0.05) 0%, transparent 60%);
+      animation: pulseGlow 8s infinite alternate;
+      z-index: 0;
+    }
 
-        .loading-dot {
-            width: 12px;
-            height: 12px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            animation: bounce 1.4s infinite ease-in-out both;
-        }
+    /* ===== SPLASH SCREEN ===== */
+    .splash-screen {
+      text-align: center;
+      padding: 25px 20px 30px;
+      max-width: 780px;
+      width: 100%;
+      animation: fadeIn 1.2s cubic-bezier(0.2, 0.9, 0.3, 1);
+      position: relative;
+      z-index: 10;
+    }
 
-        .loading-dot:nth-child(1) { animation-delay: -0.32s; }
-        .loading-dot:nth-child(2) { animation-delay: -0.16s; }
+    /* ===== HERO ANIMATION ===== */
+    .hero-animation {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
 
-        .progress-bar {
-            width: 300px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 2px;
-            margin: 20px auto;
-            overflow: hidden;
-        }
+    .hero-item {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      filter: drop-shadow(0 10px 24px rgba(0,0,0,0.5));
+      animation: floatItem 3.6s ease-in-out infinite;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(10px);
+      border-radius: 30px;
+      padding: 12px 24px;
+      border: 1px solid rgba(255, 215, 190, 0.12);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
 
-        .progress-fill {
-            height: 100%;
-            background: white;
-            border-radius: 2px;
-            width: 0%;
-            animation: loading 2s ease-in-out forwards;
-        }
+    .hero-img {
+      max-width: 220px;
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      display: block;
+      object-fit: contain;
+      background: rgba(255, 255, 255, 0.05);
+      transition: transform 0.3s;
+    }
 
-        .splash-version {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.85rem;
-            margin-top: 30px;
-        }
+    .hero-img:hover {
+      transform: scale(1.05);
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
+    .hero-img.error {
+      display: none;
+    }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
+    .fallback-icon {
+      font-size: 4.5rem;
+      color: #f5e6d3;
+      background: rgba(255,255,255,0.1);
+      padding: 30px 40px;
+      border-radius: 60px;
+      border: 2px solid rgba(255,215,190,0.2);
+      display: none;
+      backdrop-filter: blur(4px);
+    }
 
-        @keyframes bounce {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1); }
-        }
+    .fallback-icon.show {
+      display: inline-block;
+    }
 
-        @keyframes loading {
-            0% { width: 0%; }
-            100% { width: 100%; }
-        }
+    .hero-item .label {
+      margin-top: 8px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: rgba(0,0,0,0.3);
+      padding: 4px 16px;
+      border-radius: 40px;
+      backdrop-filter: blur(2px);
+      font-weight: 500;
+    }
 
-        @media (max-width: 768px) {
-            .splash-title { font-size: 1.8rem; }
-            .splash-subtitle { font-size: 0.95rem; }
-            .splash-logo { width: 90px; height: 90px; }
-            .splash-logo svg { width: 50px; height: 50px; }
-            .progress-bar { width: 250px; }
-        }
-    </style>
+    /* ===== MICROSCOPE LOADING ===== */
+    .microscope-loading-area {
+      width: 100%;
+      max-width: 450px;
+      margin: 20px auto 10px;
+      overflow: hidden;
+      position: relative;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .microscope-track {
+      position: relative;
+      width: 100%;
+      height: 70px;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(8px);
+      border-radius: 60px;
+      border: 1px solid rgba(255, 215, 190, 0.1);
+      overflow: hidden;
+      box-shadow: inset 0 2px 12px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .microscope-slide {
+      position: absolute;
+      left: -15%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 3.2rem;
+      color: #f5e6d3;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: microscopeScan 4.5s ease-in-out infinite;
+      filter: drop-shadow(0 4px 20px rgba(200, 230, 255, 0.3));
+      white-space: nowrap;
+      z-index: 2;
+    }
+
+    .microscope-slide i {
+      font-size: inherit;
+      text-shadow: 0 0 30px rgba(200, 230, 255, 0.2);
+    }
+
+    .microscope-slide .fa-microscope {
+      font-size: 3.5rem;
+    }
+
+    .microscope-slide .fa-vial {
+      font-size: 2.2rem;
+      margin-left: 4px;
+    }
+
+    .microscope-slide .fa-flask {
+      font-size: 2rem;
+      margin-left: 2px;
+    }
+
+    .microscope-slide .fa-dna {
+      font-size: 2rem;
+      margin-left: 4px;
+    }
+
+    .progress-fill-microscope {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, rgba(200, 230, 255, 0.0), rgba(200, 230, 255, 0.15));
+      border-radius: 60px;
+      animation: loading 40s linear forwards;
+      z-index: 0;
+    }
+
+    .sample-text {
+      position: absolute;
+      right: 8%;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, 0.12);
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      font-weight: 300;
+      z-index: 1;
+      white-space: nowrap;
+      text-transform: uppercase;
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    .splash-title {
+      color: white;
+      font-size: 3.4rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.5);
+      margin-top: 6px;
+      margin-bottom: 4px;
+      background: linear-gradient(135deg, #ffffff 0%, #ffdede 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .splash-subtitle {
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 1.2rem;
+      font-weight: 400;
+      letter-spacing: 5px;
+      margin-bottom: 4px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+
+    .adinas-text {
+      font-size: 3.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 0 30px rgba(255, 215, 190, 0.5), 0 4px 20px rgba(0,0,0,0.5);
+      letter-spacing: 10px;
+      margin: 6px 0 8px;
+      background: linear-gradient(145deg, #fff6ef, #ffe1d0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 4s infinite alternate;
+      font-family: 'Segoe UI', 'Noto Sans Ethiopic', system-ui, sans-serif;
+    }
+
+    .splash-version {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      margin-top: 14px;
+      font-weight: 300;
+    }
+
+    .image-note {
+      color: rgba(255, 255, 255, 0.25);
+      font-size: 0.7rem;
+      margin-top: 8px;
+      letter-spacing: 1px;
+      background: rgba(0,0,0,0.2);
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      backdrop-filter: blur(4px);
+    }
+
+    /* ===== KEYFRAMES ===== */
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.92) translateY(20px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    @keyframes floatItem {
+      0% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-14px) rotate(1.5deg); }
+      100% { transform: translateY(0) rotate(-1deg); }
+    }
+
+    @keyframes shimmer {
+      0% { text-shadow: 0 0 10px rgba(255,220,200,0.3), 0 0 30px rgba(255,200,180,0.1); }
+      100% { text-shadow: 0 0 40px rgba(255,240,230,0.8), 0 0 80px rgba(255,200,180,0.3); }
+    }
+
+    @keyframes loading {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+
+    @keyframes microscopeScan {
+      0% {
+        left: -15%;
+        transform: translateY(-50%) scaleX(1) rotate(0deg);
+      }
+      10% {
+        transform: translateY(-55%) scaleX(1) rotate(-2deg);
+      }
+      25% {
+        transform: translateY(-45%) scaleX(1) rotate(2deg);
+      }
+      40% {
+        transform: translateY(-55%) scaleX(1) rotate(-1.5deg);
+      }
+      55% {
+        transform: translateY(-48%) scaleX(1) rotate(1.5deg);
+      }
+      70% {
+        transform: translateY(-55%) scaleX(1) rotate(-2deg);
+      }
+      85% {
+        transform: translateY(-45%) scaleX(1) rotate(2deg);
+      }
+      100% {
+        left: 100%;
+        transform: translateY(-50%) scaleX(1) rotate(0deg);
+      }
+    }
+
+    @keyframes floatLab {
+      0% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+        opacity: 0.3;
+      }
+      25% {
+        transform: translate(30px, -20px) rotate(90deg) scale(1.1);
+        opacity: 0.5;
+      }
+      50% {
+        transform: translate(-20px, 30px) rotate(180deg) scale(0.9);
+        opacity: 0.3;
+      }
+      75% {
+        transform: translate(40px, 10px) rotate(270deg) scale(1.05);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translate(0, 0) rotate(360deg) scale(1);
+        opacity: 0.3;
+      }
+    }
+
+    @keyframes floatParticle {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.3;
+      }
+      33% {
+        transform: translate(50px, -30px) scale(1.2);
+        opacity: 0.6;
+      }
+      66% {
+        transform: translate(-30px, 40px) scale(0.8);
+        opacity: 0.4;
+      }
+      100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.3;
+      }
+    }
+
+    @keyframes pulseGlow {
+      0% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      .splash-title { font-size: 2.4rem; letter-spacing: 2px; }
+      .adinas-text { font-size: 2.8rem; letter-spacing: 6px; }
+      .hero-img { max-width: 160px; }
+      .hero-animation { gap: 16px; }
+      .splash-subtitle { font-size: 1rem; letter-spacing: 3px; }
+      .fallback-icon { font-size: 3rem; padding: 20px 28px; }
+      .microscope-slide { font-size: 2.4rem; }
+      .microscope-slide .fa-microscope { font-size: 2.6rem; }
+      .microscope-slide .fa-vial { font-size: 1.6rem; }
+      .microscope-slide .fa-flask { font-size: 1.4rem; }
+      .microscope-slide .fa-dna { font-size: 1.4rem; }
+      .microscope-track { height: 55px; }
+      .microscope-loading-area { max-width: 320px; }
+      .sample-text { display: none; }
+      .lab-element { font-size: 2rem !important; }
+    }
+
+    @media (max-width: 420px) {
+      .splash-title { font-size: 2.0rem; }
+      .adinas-text { font-size: 2.2rem; }
+      .hero-img { max-width: 130px; }
+      .hero-animation { gap: 10px; }
+      .fallback-icon { font-size: 2.2rem; padding: 15px 22px; }
+      .microscope-slide { font-size: 2rem; }
+      .microscope-slide .fa-microscope { font-size: 2.2rem; }
+      .microscope-slide .fa-vial { font-size: 1.3rem; }
+      .microscope-slide .fa-flask { font-size: 1.2rem; }
+      .microscope-slide .fa-dna { font-size: 1.2rem; }
+      .microscope-track { height: 48px; }
+      .microscope-loading-area { max-width: 260px; }
+      .lab-element { font-size: 1.5rem !important; }
+    }
+  </style>
 </head>
 <body>
-    <div class="splash-screen">
-        <!-- Logo -->
-        <div class="splash-logo" id="splashLogo">
-            <svg viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-            </svg>
-        </div>
 
-        <h1 class="splash-title">AGPHL LIS</h1>
-        <p class="splash-subtitle">Laboratory Information System</p>
+  <!-- ===== ANIMATED MEDICAL LAB BACKGROUND ===== -->
+  <div class="lab-background">
+    <!-- Floating lab elements -->
+    <div class="lab-element"><i class="fas fa-dna"></i></div>
+    <div class="lab-element"><i class="fas fa-microscope"></i></div>
+    <div class="lab-element"><i class="fas fa-flask"></i></div>
+    <div class="lab-element"><i class="fas fa-vial"></i></div>
+    <div class="lab-element"><i class="fas fa-syringe"></i></div>
+    <div class="lab-element"><i class="fas fa-heartbeat"></i></div>
+    <div class="lab-element"><i class="fas fa-biohazard"></i></div>
+    <div class="lab-element"><i class="fas fa-radiation"></i></div>
+    <div class="lab-element"><i class="fas fa-capsules"></i></div>
+    <div class="lab-element"><i class="fas fa-pills"></i></div>
+    <div class="lab-element"><i class="fas fa-lungs"></i></div>
+    <div class="lab-element"><i class="fas fa-bone"></i></div>
+    
+    <!-- Soft particles -->
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
 
-        <div class="loading-container">
-            <div class="loading-dot"></div>
-            <div class="loading-dot"></div>
-            <div class="loading-dot"></div>
-        </div>
+  <!-- ===== SPLASH SCREEN CONTENT ===== -->
+  <div class="splash-screen" id="splashScreen">
 
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
-        </div>
-
-        <div class="splash-version">Version 2.0</div>
+    <!-- ===== HERO: laboratory-expert.png ===== -->
+    <div class="hero-animation">
+      <div class="hero-item">
+        <img class="hero-img" 
+             src="asrat.png" 
+             alt="Laboratory Expert" 
+             onerror="this.classList.add('error'); this.parentElement.querySelector('.fallback-icon').classList.add('show');">
+        <span class="fallback-icon"><i class="fas fa-microscope"></i></span>
+        <span class="label">🔬 Developer</span>
+      </div>
     </div>
 
-    <script>
-        // Check for logo in local storage
-        const storedLogo = localStorage.getItem('hospitalLogo');
-        if (storedLogo) {
-            const logoContainer = document.getElementById('splashLogo');
-            if (logoContainer) {
-                logoContainer.innerHTML = `<img src="${storedLogo}" alt="Hospital Logo">`;
-            }
-        }
+    <!-- አዲናስ text -->
+    <div class="adinas-text">አዲናስ</div>
 
-        // Redirect to login after splash screen
-        setTimeout(function() {
-            window.location.href = 'login.html';
-        }, 3000);
+    <!-- AGPHL LIS -->
+    <h1 class="splash-title">AGPHL LIS</h1>
+    <p class="splash-subtitle">Laboratory Information System</p>
 
-        // Register the service worker as early as possible so offline
-        // support is ready by the time the person reaches the login page.
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./service-worker.js').catch(() => {});
-        }
-    </script>
+    <!-- ===== MICROSCOPE LOADING ===== -->
+    <div class="microscope-loading-area">
+      <div class="microscope-track">
+        <div class="progress-fill-microscope"></div>
+        <div class="microscope-slide">
+          <i class="fas fa-microscope"></i>
+          <i class="fas fa-vial"></i>
+          <i class="fas fa-flask"></i>
+          <i class="fas fa-dna"></i>
+        </div>
+        <div class="sample-text">🔬 EXAMINING SAMPLE</div>
+      </div>
+    </div>
+
+    <div class="splash-version">Version 2.0</div>
+    
+    <div class="image-note">📁 Contact Developer for any Question <a href="tel+ 0918225730"> 0918225730</a></div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // --- 40 second redirect to login ---
+      const REDIRECT_DELAY = 40000;
+
+      setTimeout(function() {
+        window.location.href = 'login.html';
+      }, REDIRECT_DELAY);
+
+      // --- service worker (optional) ---
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+      }
+
+      // --- Check if image loaded successfully ---
+      document.querySelectorAll('.hero-img').forEach(img => {
+        img.addEventListener('load', function() {
+          console.log('✅ Loaded:', this.src);
+        });
+        img.addEventListener('error', function() {
+          console.warn('❌ Failed to load:', this.src);
+        });
+      });
+
+      console.log('Splash with medical lab gradient background.');
+    })();
+  </script>
+
 </body>
 </html>
