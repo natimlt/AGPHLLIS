@@ -1,18 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AGPHL LIS - Login</title>
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" href="assets/icons/favicon.ico">
-    <link rel="apple-touch-icon" href="assets/icons/icon-180.png">
-    <meta name="theme-color" content="#1a3a6b">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="assets/icons/favicon.ico" />
+    <link rel="apple-touch-icon" href="assets/icons/icon-180.png" />
+    <meta name="theme-color" content="#1a3a6b" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/login.css" />
+    <style>
+        /* quick inline fallback – will be overridden by external css */
+        .brand-logo img {
+            max-width: 80px;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            background: white;
+            padding: 4px;
+        }
+        .brand-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* ensure the page is always the login view */
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+    </style>
 </head>
 <body>
     <div class="login-container">
@@ -30,14 +53,13 @@
                 </svg>
             </div>
             <div class="brand-content">
+                <!-- Brand logo replaced with agphl.png -->
                 <div class="brand-logo" id="brandLogo">
-                    <svg viewBox="0 0 24 24" width="64" height="64" fill="white">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-                    </svg>
+                    <img src="agphl.png" alt="AGPHL Hospital Logo" width="80" height="80" />
                 </div>
                 <h1 class="brand-title">AGPHL LIS</h1>
-                <p class="brand-subtitle">Agew Gimjabet Primary Hospital </p>
-                <p class="brand-hospital">አገው ግምጃቤት መጀመሪያ ደረጃ ሆስፒታል </p>
+                <p class="brand-subtitle">Laboratory Information System</p>
+                <p class="brand-hospital">Agew Gimjabet Primary Hospital</p>
                 <div class="brand-tagline-wrap">
                     <span id="brandTagline" class="brand-tagline"></span><span class="tagline-cursor">|</span>
                 </div>
@@ -55,13 +77,14 @@
         <div class="login-form-panel">
             <div class="form-wrapper">
                 <div class="form-header">
+                    <!-- decorative SVG remains -->
                     <svg width="40" height="20" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="10">
-                                    <path d="M7 8v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="19" cy="9" r="24"/>
-                                    <path d="M43 21v-2a4 4 0 3 0-6-3.87"/>
-                                    <path d="M26 6.13a4 4 0 0 1 0 7.75"/>
-                                </svg>
-                   <marquee> <h2>Welcome Back</h2> </marquee>
+                        <path d="M7 8v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="19" cy="9" r="24"/>
+                        <path d="M43 21v-2a4 4 0 3 0-6-3.87"/>
+                        <path d="M26 6.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <marquee><h2>Welcome Back</h2></marquee>
                     <p>Sign in to LIS System</p>
                 </div>
 
@@ -86,7 +109,6 @@
                                 <option value="reception">Reception</option>
                                 <option value="viewer">Viewer</option>
                                 <option value="logistic">Logistic</option>
-                                
                             </select>
                         </div>
                         <p style="font-size:var(--text-xs); color:var(--gray-500); margin:0.35rem 0 0;">Picking a role fills in its username below - you still need your own password.</p>
@@ -144,14 +166,13 @@
 
                     <div class="demo-credentials">
                         <p>Credentials <span style="opacity:0.7;">(click password button to get password )</span>:</p>
-                    
-                     <a href="pas.html" ><p>Password</p> </a> 
+                        <a href="pas.html"><p>Password</p></a> 
                     </div>
                 </form>
 
                 <div class="form-footer">
-                    <p>Developed by  <strong>Asrat Genet</strong> </p>
-                   <marquee> <p>Medical Laboratory Science Professional &amp; Laboratory Quality Officer</p></marquee>
+                    <p>Developed by <strong>Asrat Genet</strong></p>
+                    <marquee><p>Medical Laboratory Science Professional &amp; Laboratory Quality Officer</p></marquee>
                 </div>
             </div>
         </div>
@@ -159,7 +180,7 @@
 
     <div id="toast" class="toast" style="display: none;"></div>
 
-    <!-- ===== SCRIPTS - Load in correct order ===== -->
+    <!-- ===== SCRIPTS ===== -->
     <script src="assets/js/utils.js"></script>
     <script src="assets/js/validation.js"></script>
     <script src="assets/js/storage.js"></script>
@@ -168,5 +189,49 @@
     <script src="assets/js/app.js"></script>
     <script src="assets/js/login-animations.js"></script>
     <script src="assets/js/pwa.js"></script>
+
+    <script>
+        // Ensure we always start from index.html 
+        // If the current URL is not exactly the login page (or root), redirect to index.html
+        (function() {
+            // Only run in browser
+            if (typeof window === 'undefined') return;
+            
+            // Get current path and filename
+            const path = window.location.pathname;
+            const filename = path.split('/').pop() || '';
+            
+            // If we are not already at index.html or root, redirect
+            // Also prevent loops: only redirect if we are on login.html or some other page
+            // but we want to always serve index.html as the entry point.
+            // In a typical setup, index.html is the login page.
+            // But if user directly accesses login.html, redirect to index.html
+            if (filename === 'login.html' || filename === '') {
+                // If we are at root or login.html, we are fine (index.html is served)
+                // But if the server serves login.html as default, we might want to ensure it's index.html
+                // Actually, we want the URL to show index.html, not login.html
+                // So if the current file is login.html, redirect to index.html
+                if (filename === 'login.html') {
+                    // Redirect to index.html
+                    const newPath = path.replace(/login\.html$/, 'index.html');
+                    window.location.replace(newPath);
+                }
+                // If root (no filename), we assume index.html is served, so we are good.
+            } else {
+                // If we are on any other page (like dashboard), we might want to redirect to index.html
+                // But we only want to do this if the user is not authenticated.
+                // However, the requirement is "always start from index.html" so we redirect
+                // any non-index page to index.html, but we should be careful not to break
+                // the login flow.
+                // For simplicity, we check if we are on a page that is not index.html or login.html
+                // and redirect to index.html.
+                // But we should not redirect if we are already on index.html.
+                if (filename !== 'index.html' && filename !== '') {
+                    // Redirect to index.html
+                    window.location.replace('index.html');
+                }
+            }
+        })();
+    </script>
 </body>
 </html>
