@@ -191,45 +191,31 @@
     <script src="assets/js/pwa.js"></script>
 
     <script>
-        // Ensure we always start from index.html 
-        // If the current URL is not exactly the login page (or root), redirect to index.html
+        // This script ensures that if we are on index.html, we redirect to login.html
+        // If we are on login.html, we stay
         (function() {
-            // Only run in browser
             if (typeof window === 'undefined') return;
             
-            // Get current path and filename
             const path = window.location.pathname;
             const filename = path.split('/').pop() || '';
             
-            // If we are not already at index.html or root, redirect
-            // Also prevent loops: only redirect if we are on login.html or some other page
-            // but we want to always serve index.html as the entry point.
-            // In a typical setup, index.html is the login page.
-            // But if user directly accesses login.html, redirect to index.html
-            if (filename === 'login.html' || filename === '') {
-                // If we are at root or login.html, we are fine (index.html is served)
-                // But if the server serves login.html as default, we might want to ensure it's index.html
-                // Actually, we want the URL to show index.html, not login.html
-                // So if the current file is login.html, redirect to index.html
-                if (filename === 'login.html') {
-                    // Redirect to index.html
-                    const newPath = path.replace(/login\.html$/, 'index.html');
+            // If we are on index.html, redirect to login.html
+            if (filename === 'index.html' || filename === '') {
+                // Check if we're already on the root or index.html
+                // Redirect to login.html
+                const newPath = path.replace(/index\.html$/, 'login.html');
+                // If path is just '/' or empty, append login.html
+                if (newPath === path) {
+                    // If we're at root, just go to login.html
+                    window.location.replace('login.html');
+                } else {
                     window.location.replace(newPath);
                 }
-                // If root (no filename), we assume index.html is served, so we are good.
-            } else {
-                // If we are on any other page (like dashboard), we might want to redirect to index.html
-                // But we only want to do this if the user is not authenticated.
-                // However, the requirement is "always start from index.html" so we redirect
-                // any non-index page to index.html, but we should be careful not to break
-                // the login flow.
-                // For simplicity, we check if we are on a page that is not index.html or login.html
-                // and redirect to index.html.
-                // But we should not redirect if we are already on index.html.
-                if (filename !== 'index.html' && filename !== '') {
-                    // Redirect to index.html
-                    window.location.replace('index.html');
-                }
+            }
+            // If we are on login.html, do nothing (stay)
+            // If we are on any other page, redirect to login.html
+            else if (filename !== 'login.html') {
+                window.location.replace('login.html');
             }
         })();
     </script>
