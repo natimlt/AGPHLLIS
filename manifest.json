@@ -2,7 +2,7 @@
   "name": "AGPHL Laboratory Information System",
   "short_name": "AGPHL LIS",
   "description": "Laboratory Information System for Agew Gimjabet Primary Hospital and partner facilities - ISO 15189:2022 aligned.",
-  "start_url": "./login.html",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
